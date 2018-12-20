@@ -37,7 +37,7 @@ public class JelinskiMorandyModel {
         System.out.println("This is N: " + N);
         System.out.println("This is currentDifference: " + currentDifference);
         System.out.println("Fi: " + fi);
-        System.out.println("Ex(226): " + expectedValue);
+        System.out.println("Ex("+ n+1 +"): " + expectedValue);
     }
 
     private void calculateN() {

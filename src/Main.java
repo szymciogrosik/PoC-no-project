@@ -9,7 +9,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("main_window.fxml"));
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Niezawodność oprogramowania - Szymon Gross - Warszawa 2018");
         primaryStage.setScene(new Scene(root, 500, 600));
         primaryStage.setResizable(false);
         primaryStage.show();

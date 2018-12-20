@@ -13,6 +13,9 @@ public class SchickWolvertonModel {
     private double leftSide;
     private double rightSide;
 
+    private double fi;
+    private double expectedValue;
+
     public SchickWolvertonModel(int[] t, double precision) {
         this.t = t;
         this.precision = precision;
@@ -31,22 +34,21 @@ public class SchickWolvertonModel {
         currentDifference = Math.abs(leftSide - rightSide);
 
         calculateN();
-        System.out.println(leftSide + " ; " + rightSide);
-
+        calculateFi();
+        calculateExpectedValue();
 
         System.out.println("This is N: " + N);
         System.out.println("This is currentDifference: " + currentDifference);
+        System.out.println("Fi: " + fi);
+        System.out.println("Ex("+ n+1 +"): " + expectedValue);
     }
 
     private void calculateN() {
         while(currentDifference > precision) {
             N++;
 
-//            System.out.println(leftSide + " ; " + rightSide);
             leftSide = leftSideCalculate();
             rightSide = rightSideCalculate();
-
-//            System.out.println(leftSide + " ; " + rightSide);
             currentDifference = Math.abs(leftSide - rightSide);
         }
     }
@@ -76,5 +78,13 @@ public class SchickWolvertonModel {
         }
 
         return 2*sumToReturn;
+    }
+
+    private void calculateFi() {
+        fi = rightSideCalculate();
+    }
+
+    private void calculateExpectedValue(){
+        expectedValue = Math.sqrt((Math.PI / (2 * this.fi * (this.N - this.n))));
     }
 }
