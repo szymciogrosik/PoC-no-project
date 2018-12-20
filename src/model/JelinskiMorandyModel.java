@@ -3,13 +3,12 @@ package model;
 public class JelinskiMorandyModel {
 
     private double N;
-    private double[] t;
+    private int[] t;
     private double n;
 
     private double leftSide;
     private double rightSide;
 
-    private double previousDifference;
     private double currentDifference;
 
     private double precision;
@@ -17,7 +16,7 @@ public class JelinskiMorandyModel {
     private double fi;
     private double expectedValue;
 
-    public JelinskiMorandyModel(double[] t, double precision) {
+    public JelinskiMorandyModel(int[] t, double precision) {
         this.t = t;
         this.N = t.length+1;
         this.n = t.length;
@@ -42,15 +41,11 @@ public class JelinskiMorandyModel {
 
     private void calculateN() {
         while(currentDifference > precision) {
-            previousDifference = Math.abs(currentDifference);
             N++;
+
             leftSide = leftSideCalculate();
             rightSide = rightSideCalculate();
-
             currentDifference = Math.abs(leftSide - rightSide);
-
-            if(previousDifference < Math.abs(currentDifference))
-                break;
         }
     }
 
@@ -91,5 +86,17 @@ public class JelinskiMorandyModel {
 
     private void calculateExpectedValue() {
         this.expectedValue = 1.0 / (this.fi*(this.N-(this.n)));
+    }
+
+    public String getNString() {
+        return N + "";
+    }
+
+    public String getFiString() {
+        return fi + "";
+    }
+
+    public String getExpectedValueString() {
+        return expectedValue + "";
     }
 }

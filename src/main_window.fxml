@@ -21,7 +21,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Button onAction="#calculateModels" layoutX="25.0" layoutY="340.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="450.0" text="Oblicz" />
+      <Button fx:id="calculateButton" onAction="#calculateModels" layoutX="25.0" layoutY="340.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="450.0" text="Oblicz" />
       <Separator layoutX="25.0" layoutY="320.0" prefHeight="5.0" prefWidth="450.0" />
       <Separator layoutX="25.0" layoutY="380.0" prefHeight="5.0" prefWidth="450.0" />
       <Label layoutX="308.0" layoutY="69.0" text="Określ dokładność obliczeń" />

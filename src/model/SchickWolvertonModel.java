@@ -87,4 +87,16 @@ public class SchickWolvertonModel {
     private void calculateExpectedValue(){
         expectedValue = Math.sqrt((Math.PI / (2 * this.fi * (this.N - this.n))));
     }
+
+    public String getNString() {
+        return N + "";
+    }
+
+    public String getFiString() {
+        return fi + "";
+    }
+
+    public String getExpectedValueString() {
+        return expectedValue + "";
+    }
 }

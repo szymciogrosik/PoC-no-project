@@ -3,11 +3,10 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
+import model.JelinskiMorandyModel;
+import model.SchickWolvertonModel;
 
 import java.io.*;
 
@@ -23,11 +22,12 @@ public class Controller {
 
     @FXML private TextField precisionTextField;
 
-    final ObservableList<String> list = FXCollections.observableArrayList();
+    @FXML private Button calculateButton;
 
-    public void initialize() {
+    final ObservableList<String> errorListString = FXCollections.observableArrayList();
+    private int[] errorListInt;
 
-    }
+    public void initialize() { }
 
     @FXML
     private void loadFileWithData() {
@@ -42,8 +42,18 @@ public class Controller {
 
     @FXML
     private void calculateModels() {
-        if(list.size() != 0 || precisionTextField.getLength() > 0) {
-            System.out.println("Hello");
+        if(errorListString.size() != 0 || precisionTextField.getLength() > 0) {
+            calculateButton.setDisable(true);
+
+            JelinskiMorandyModel jmm = new JelinskiMorandyModel(errorListInt, Double.parseDouble(precisionTextField.getText()));
+            jmm.calculateModel();
+
+            SchickWolvertonModel swm = new SchickWolvertonModel(errorListInt, Double.parseDouble(precisionTextField.getText()));
+            swm.calculateModel();
+
+            updateGuiValues(jmm.getNString(), jmm.getFiString(), jmm.getExpectedValueString(), swm.getNString(), swm.getFiString(), swm.getExpectedValueString());
+            calculateButton.setDisable(false);
+
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Błąd walidacji");
@@ -54,17 +64,33 @@ public class Controller {
     }
 
     private void loadStartDataList(File selectedFile) {
+        errorListString.clear();
         BufferedReader br = null;
         try {
             br = new BufferedReader(new FileReader(selectedFile));
             String st;
-            while ((st = br.readLine()) != null)
-                list.add(st);
+            while ((st = br.readLine()) != null) {
+                errorListString.add(st);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
         Platform.runLater(() -> {
-            errorTimeList.setItems(list);
+            errorTimeList.setItems(errorListString);
         });
+
+        errorListInt = new int[errorListString.size()];
+        for (int i = 0; i < errorListString.size(); i++) {
+            errorListInt[i] = Integer.parseInt(errorListString.get(i));
+        }
+    }
+
+    private void updateGuiValues(String nFirst, String fiFirst, String exFirst, String nSecond, String fiSecond, String exSecond) {
+        nValueFirst.setText(nFirst);
+        fiValueFirst.setText(fiFirst);
+        eValueFirst.setText(exFirst);
+        nValueSecond.setText(nSecond);
+        fiValueSecond.setText(fiSecond);
+        eValueSecond.setText(exSecond);
     }
 }
