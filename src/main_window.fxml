@@ -7,10 +7,11 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller" fx:id="anchorPane">
+<Pane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
    <children>
-      <Button onAction="#loadFileWithData" layoutX="25.0" layoutY="65.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="215.0" text="Wczytaj dane wejściowe" />
+      <Button layoutX="25.0" layoutY="65.0" mnemonicParsing="false" onAction="#loadFileWithData" prefHeight="25.0" prefWidth="215.0" text="Wczytaj dane wejściowe" />
       <ListView fx:id="errorTimeList" layoutX="25.0" layoutY="105.0" prefHeight="200.0" prefWidth="215.0" />
       <Label layoutX="138.0" layoutY="15.0" text="Ustawienia programu" textAlignment="CENTER" textFill="#36862b">
          <font>
@@ -21,7 +22,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="calculateButton" onAction="#calculateModels" layoutX="25.0" layoutY="340.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="450.0" text="Oblicz" />
+      <Button fx:id="calculateButton" layoutX="25.0" layoutY="340.0" mnemonicParsing="false" onAction="#calculateModels" prefHeight="25.0" prefWidth="450.0" text="Oblicz" />
       <Separator layoutX="25.0" layoutY="320.0" prefHeight="5.0" prefWidth="450.0" />
       <Separator layoutX="25.0" layoutY="380.0" prefHeight="5.0" prefWidth="450.0" />
       <Label layoutX="308.0" layoutY="69.0" text="Określ dokładność obliczeń" />
@@ -44,11 +45,12 @@
       <Label layoutX="286.0" layoutY="525.0" prefHeight="25.0" prefWidth="12.0" text="Φ:" />
       <Label layoutX="288.0" layoutY="560.0" text="E:" />
       <Separator layoutX="268.0" layoutY="66.0" orientation="VERTICAL" prefHeight="236.0" prefWidth="5.0" />
-      <Label fx:id="nValueFirst" layoutX="63.0" layoutY="490.0" prefHeight="25.0" prefWidth="170.0"/>
-      <Label fx:id="fiValueFirst" layoutX="63.0" layoutY="525.0" prefHeight="25.0" prefWidth="170.0"/>
-      <Label fx:id="eValueFirst" layoutX="63.0" layoutY="556.0" prefHeight="25.0" prefWidth="170.0"/>
-      <Label fx:id="nValueSecond" layoutX="308.0" layoutY="490.0" prefHeight="25.0" prefWidth="170.0"/>
-      <Label fx:id="fiValueSecond" layoutX="308.0" layoutY="525.0" prefHeight="25.0" prefWidth="170.0"/>
-      <Label fx:id="eValueSecond" layoutX="308.0" layoutY="556.0" prefHeight="25.0" prefWidth="170.0"/>
+      <!--<Label fx:id="nValueFirst" layoutX="63.0" layoutY="490.0" prefHeight="25.0" prefWidth="170.0"/>-->
+      <Text fx:id="nValueFirst" layoutX="63.0" layoutY="507.0" wrappingWidth="178.0" />
+      <Text fx:id="fiValueFirst" layoutX="63.0" layoutY="542.0" wrappingWidth="178.00000682473183" />
+      <Text fx:id="eValueFirst" layoutX="63.0" layoutY="573.0" wrappingWidth="178.00000682473183" />
+      <Text fx:id="nValueSecond" layoutX="319.0" layoutY="507.0" wrappingWidth="148.50781112909317" />
+      <Text fx:id="fiValueSecond" layoutX="319.0" layoutY="541.0" wrappingWidth="148.50781112909317" />
+      <Text fx:id="eValueSecond" layoutX="319.0" layoutY="572.0" wrappingWidth="148.50781112909317" />
    </children>
 </Pane>

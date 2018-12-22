@@ -10,6 +10,7 @@ public class SchickWolvertonModel {
 
     private double T;
     private int N;
+
     private double leftSide;
     private double rightSide;
 
@@ -20,12 +21,12 @@ public class SchickWolvertonModel {
         this.t = t;
         this.precision = precision;
         this.n = t.length;
-        this.N = t.length+1;
-
-        this.T = 0.0;
     }
 
     public void calculateModel() {
+        this.N = t.length+1;
+        this.T = 0.0;
+
         calculateT();
 
         leftSide = leftSideCalculate();
@@ -36,11 +37,6 @@ public class SchickWolvertonModel {
         calculateN();
         calculateFi();
         calculateExpectedValue();
-
-        System.out.println("This is N: " + N);
-        System.out.println("This is currentDifference: " + currentDifference);
-        System.out.println("Fi: " + fi);
-        System.out.println("Ex("+ n+1 +"): " + expectedValue);
     }
 
     private void calculateN() {

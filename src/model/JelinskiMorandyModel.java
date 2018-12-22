@@ -2,7 +2,7 @@ package model;
 
 public class JelinskiMorandyModel {
 
-    private double N;
+    private int N;
     private int[] t;
     private double n;
 
@@ -10,21 +10,20 @@ public class JelinskiMorandyModel {
     private double rightSide;
 
     private double currentDifference;
-
     private double precision;
-
     private double fi;
     private double expectedValue;
 
     public JelinskiMorandyModel(int[] t, double precision) {
         this.t = t;
-        this.N = t.length+1;
         this.n = t.length;
         this.precision = precision;
-        this.fi = 0.0;
     }
 
     public void calculateModel() {
+        this.N = t.length+1;
+        this.fi = 0.0;
+
         leftSide = leftSideCalculate();
         rightSide = rightSideCalculate();
         currentDifference = Math.abs(leftSide - rightSide);
@@ -32,11 +31,6 @@ public class JelinskiMorandyModel {
         calculateN();
         calculateFi();
         calculateExpectedValue();
-
-        System.out.println("This is N: " + N);
-        System.out.println("This is currentDifference: " + currentDifference);
-        System.out.println("Fi: " + fi);
-        System.out.println("Ex("+ n+1 +"): " + expectedValue);
     }
 
     private void calculateN() {
